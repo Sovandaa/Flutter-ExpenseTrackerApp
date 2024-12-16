@@ -31,6 +31,9 @@ dependencies:
   flutter:
     sdk: flutter
   uuid: ^4.4.2
+  intl: ^0.20.0
+
+  google_fonts: ^6.2.1
 
   
 
