@@ -12,17 +12,18 @@ class TotalExpenseBanner extends StatelessWidget {
       child: Container(
         height: 120, 
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.blueAccent, Colors.lightBlue], // Gradient background
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
+                gradient: LinearGradient(
+                colors: [Colors.blue, Colors.lightBlue, Colors.white70], // Your custom gradient colors
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                ),
           borderRadius: BorderRadius.circular(20), 
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.15),
-              blurRadius: 12,
-              offset: const Offset(0, 6), 
+              color: Colors.black.withOpacity(0.2),
+              // spreadRadius: 1,
+              blurRadius: 10,
+              offset: const Offset(3, 3),
             ),
           ],
         ),

@@ -1,5 +1,5 @@
 import 'package:expense_app/models/expense.dart';
-import 'package:expense_app/widgets/expenses_form.dart';
+import 'package:expense_app/screens/add_exepense/expenses_form.dart';
 import 'package:flutter/material.dart';
 
 class AddExpenseScreen extends StatelessWidget {
@@ -13,6 +13,8 @@ class AddExpenseScreen extends StatelessWidget {
         centerTitle: true,
         title: const Text("Add Expense"),
       ),
+      backgroundColor: Color(0xF7F7F7F7),
+
       body: ExpensesForm(onCreated: onTappedAdd),
     );
   }

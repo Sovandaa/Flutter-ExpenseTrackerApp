@@ -1,10 +1,10 @@
 import 'package:expense_app/data/expense_data.dart';
 import 'package:expense_app/models/expense.dart';
-import 'package:expense_app/screens/add_expense.dart';
-import 'package:expense_app/screens/summary_screen.dart';
-import 'package:expense_app/widgets/bottom_nav.dart';
-import 'package:expense_app/widgets/expenses_list.dart';
-import 'package:expense_app/widgets/total_expense.dart';
+import 'package:expense_app/screens/add_exepense/add_expense.dart';
+import 'package:expense_app/screens/summary/summary_screen.dart';
+import 'package:expense_app/utils/bottom_nav.dart';
+import 'package:expense_app/screens/home/expenses_list.dart';
+import 'package:expense_app/utils/total_expense.dart';
 import 'package:flutter/material.dart';
 
 class ExpenseScreen extends StatefulWidget {
@@ -82,21 +82,23 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
           ),
         ),
       ),
-      backgroundColor: Color(0xF7F7F7F7),
-      body: Center(
-        child: Column(
+      backgroundColor: Color(0xFFF2F2F8),
+      body: 
+        Column(
           children: [
             //banner display total expense
             TotalExpenseBanner(totalExpense: totalExpense),
 
             // display list of expenses
-            Text("Recent Transactions"),
+            Text(
+              "Recent Transactions", textAlign: TextAlign.left,
+            ),
             Expanded(
               child: ExpensesList(expenses: expenseList.getAllExpense()),
             ),
           ],
         ),
-      ),
+      
       bottomNavigationBar: BottomNavBarApp(
         selectedIndex: selectedIndex,
         onTapped: onItemTapped, // trigger when tap item in nav to switch screen

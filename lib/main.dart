@@ -1,4 +1,4 @@
-import 'package:expense_app/screens/expense_screen.dart';
+import 'package:expense_app/screens/home/expense_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(ExpenseTrackerApp());
@@ -8,7 +8,7 @@ class ExpenseTrackerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // color: Color(0xF7F7F7F7),
+      // color: Color(0xFFF2F2F8),
       debugShowCheckedModeBanner: false,
       home: ExpenseScreen(),
     );

@@ -41,3 +41,31 @@ class ExpenseManager {
   // list all expenses
   void viewAllExpense() {}
 }
+
+
+
+
+// // Update an expense by its ID
+//   void updateExpense(String id, Expense updatedExpense) {
+//     int index = expenses.indexWhere((expense) => expense.id == id);
+//     if (index != -1) {
+//       expenses[index] = updatedExpense; // Replace the old expense with the updated one
+//     }
+//   }
+
+//   // Get expenses filtered by category
+//   List<Expense> getExpensesByCategory(Category category) {
+//     return expenses.where((expense) => expense.category == category).toList();
+//   }
+
+//   // Get expenses within a specific date range (e.g., fromDate to toDate)
+//   List<Expense> getExpensesByDateRange(DateTime fromDate, DateTime toDate) {
+//     return expenses
+//         .where((expense) => expense.date.isAfter(fromDate) && expense.date.isBefore(toDate))
+//         .toList();
+//   }
+
+//   // Optional: Method to initialize the ExpenseList with some initial data (e.g., dummy data)
+//   void initializeExpenses(List<Expense> initialExpenses) {
+//     expenses = initialExpenses;
+//   }
