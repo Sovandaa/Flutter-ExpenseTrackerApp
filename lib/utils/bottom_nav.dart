@@ -1,73 +1,44 @@
 import 'package:flutter/material.dart';
 
-class BottomNavBarApp extends StatelessWidget {
-  final int selectedIndex;
-  final void Function(int) onTapped;
+class BottomNavBarApp extends StatefulWidget {
+  const BottomNavBarApp({super.key, required this.currentIndex, required this.onTapped});
 
-  const BottomNavBarApp({
-    super.key,
-    required this.selectedIndex,
-    required this.onTapped,
-  });
+  final int currentIndex;
+  final void Function(int index) onTapped;
 
   @override
+  State<BottomNavBarApp> createState() => _BottomNavBarAppState();
+}
+
+class _BottomNavBarAppState extends State<BottomNavBarApp> {
+  @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(20.0),
-        topRight: Radius.circular(20.0),
+    return BottomNavigationBar(
+      currentIndex: widget.currentIndex, 
+      onTap: widget.onTapped, 
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: Colors.white,
+      selectedItemColor: Colors.blue,
+      unselectedItemColor: Colors.grey,
+      selectedLabelStyle: const TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.15),
-              spreadRadius: 0.5,
-              blurRadius: 12,
-              offset: Offset(0, -4), // changes position of shadow
-            ),
-          ],
-        ),
-        child: BottomNavigationBar(
-          currentIndex: selectedIndex,
-          onTap: onTapped,
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.grey,
-          selectedLabelStyle: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-          ),
-          unselectedLabelStyle: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.normal,
-          ),
-          iconSize: 24,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_filled),
-              label: 'Expense',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add),
-              label: 'Add',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.dashboard),
-              label: 'Summary',
-            ),
-          ],
-        ),
+      unselectedLabelStyle: const TextStyle(
+        fontSize: 12,
+        fontWeight: FontWeight.normal,
       ),
+      iconSize: 24,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home_rounded),
+          label: 'Expense',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.space_dashboard_rounded),
+          label: 'Summary',
+        ),
+      ],
     );
   }
 }
-
-
-
-
-        // backgroundColor: Color(0xFF2196F3),
-        // selectedItemColor: Color(0xFFFFFFFF),
-        // unselectedItemColor: Color(0xF7F7F7F7),

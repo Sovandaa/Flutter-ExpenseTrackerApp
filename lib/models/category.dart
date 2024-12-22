@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 enum Category {
-  food('Food', Icons.fastfood, Colors.green),
-  utilities('Utilities', Icons.lightbulb_outline, Colors.blue),
-  transportation('Transportation', Icons.directions_car, Colors.orange),
-  entertainment('Entertainment', Icons.movie, Colors.purple),
-  medical('Medical', Icons.local_hospital, Colors.red),
-  education('Education', Icons.school, Colors.teal),
-  others('Others', Icons.more_horiz, Colors.grey);
+  food('Food', Icons.fastfood_rounded, Colors.green),
+  utilities('Utilities', Icons.lightbulb_outline_rounded, Colors.blue),
+  transportation('Transportation', Icons.directions_car_rounded, Colors.orange),
+  entertainment('Entertainment', Icons.movie_rounded, Colors.purple),
+  medical('Medical', Icons.local_hospital_rounded, Colors.red),
+  education('Education', Icons.school_rounded, Colors.teal),
+  others('Others', Icons.category_rounded, Colors.indigo);
 
   final String label;
   final IconData icon;

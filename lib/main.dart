@@ -1,4 +1,7 @@
-import 'package:expense_app/screens/home/expense_screen.dart';
+
+// import 'package:expense_app/screens/HomeExpenseScreen/expense_screen.dart';
+import 'package:expense_app/screens/HomeExpenseScreen/expense_screen.dart';
+import 'package:expense_app/screens/MainScreen/main_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(ExpenseTrackerApp());
@@ -10,7 +13,8 @@ class ExpenseTrackerApp extends StatelessWidget {
     return MaterialApp(
       // color: Color(0xFFF2F2F8),
       debugShowCheckedModeBanner: false,
-      home: ExpenseScreen(),
+      // home: ExpenseScreen(),
+      home: MainScreen(),
     );
   }
 }

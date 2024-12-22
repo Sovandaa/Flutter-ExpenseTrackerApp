@@ -10,18 +10,18 @@ class TotalExpenseBanner extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Container(
-        height: 120, 
+        height: 120,
         decoration: BoxDecoration(
-                gradient: LinearGradient(
-                colors: [Colors.blue, Colors.lightBlue, Colors.white70], // Your custom gradient colors
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                ),
-          borderRadius: BorderRadius.circular(20), 
+          gradient: const LinearGradient(
+            colors: [Colors.blue, Colors.lightBlue, Colors.white70],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+          borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.2),
-              // spreadRadius: 1,
+              spreadRadius: 1,
               blurRadius: 10,
               offset: const Offset(3, 3),
             ),
@@ -34,8 +34,8 @@ class TotalExpenseBanner extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  Icons.account_balance_wallet, 
+                const Icon(
+                  Icons.account_balance_wallet,
                   color: Colors.white,
                   size: 24,
                 ),
@@ -43,23 +43,23 @@ class TotalExpenseBanner extends StatelessWidget {
                 const Text(
                   "Total Expense",
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
                   ),
                 ),
-              ],
+                ],
             ),
-            const SizedBox(height: 8), 
-            Text(
-              "\$${totalExpense.toStringAsFixed(2)}",
-              style: const TextStyle(
+              const SizedBox(height: 8),
+              Text(
+                "\$${totalExpense.toStringAsFixed(2)}",
+                style: const TextStyle(
                 color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-          ],
+            ],
         ),
       ),
     );
