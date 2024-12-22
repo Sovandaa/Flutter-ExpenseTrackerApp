@@ -5,7 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
-enum FormMode { creating, editing,}
+enum FormMode {
+  creating,
+  editing,
+}
 
 class ExpensesForm extends StatefulWidget {
   const ExpensesForm({
@@ -57,7 +60,8 @@ class _ExpensesFormState extends State<ExpensesForm> {
         _note = widget.editedItem!.note;
       }
     }
-    _dateController = TextEditingController(text: DateFormat.yMd().format(_selectedDate));
+    _dateController =
+        TextEditingController(text: DateFormat.yMd().format(_selectedDate));
   }
 
   @override
@@ -103,12 +107,12 @@ class _ExpensesFormState extends State<ExpensesForm> {
       String id = editingMode ? widget.editedItem!.id : uuid.v4();
       Navigator.of(context).pop(
         Expense(
-            id: id,
-            title: _title,
-            amount: _amount.toDouble(),
-            date: _selectedDate,
-            category: _selectedCategory,
-            note: _note,
+          id: id,
+          title: _title,
+          amount: _amount.toDouble(),
+          date: _selectedDate,
+          category: _selectedCategory,
+          note: _note,
         ),
       );
     }
@@ -140,7 +144,8 @@ class _ExpensesFormState extends State<ExpensesForm> {
     if (pickedDate != null && pickedDate != _selectedDate) {
       setState(() {
         _selectedDate = pickedDate;
-        _dateController.text = DateFormat.yMd().format(_selectedDate); // Update the controller text
+        _dateController.text = DateFormat.yMd()
+            .format(_selectedDate); // Update the controller text
       });
     }
   }
@@ -153,7 +158,6 @@ class _ExpensesFormState extends State<ExpensesForm> {
         title: Text(headerLabel),
       ),
       backgroundColor: const Color(0xFFF2F2F8),
-      
       body: Container(
         padding: const EdgeInsets.all(20),
         child: Form(
@@ -166,7 +170,8 @@ class _ExpensesFormState extends State<ExpensesForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("How much?",
-                      textAlign: TextAlign.left, style: TextStyle(fontSize: 24)),
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 24)),
                   // Textfield Amount
                   TextFormField(
                     initialValue: _amount.toString(),
@@ -174,7 +179,8 @@ class _ExpensesFormState extends State<ExpensesForm> {
                       fontSize: 24,
                       fontWeight: FontWeight.w500,
                     ),
-                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
                     decoration: const InputDecoration(
                       prefix: Text("\$"),
                       hintText: ' ',
@@ -187,182 +193,189 @@ class _ExpensesFormState extends State<ExpensesForm> {
                     ],
                     // handle error validated
                     validator: (value) => validatedAmount(value),
+                    onSaved: (value) {
+                      _amount = double.parse(value!);
+                    },
                   )
                 ],
               ),
               const SizedBox(height: 16),
               // Spacer(),
               Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        spreadRadius: 1,
-                        blurRadius: 10,
-                        offset: const Offset(3, 3),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 10,
+                          offset: const Offset(3, 3),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(15)),
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    children: <Widget>[
+                      // Title input
+                      TextFormField(
+                        initialValue: _title,
+                        maxLength: 50,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.blue, width: 2),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.grey, width: 1),
+                          ),
+                          hintText: 'Title',
+                          counterText: '',
+                        ),
+                        // handle error validated
+                        validator: (value) => validatedTitle(value),
+                        onSaved: (value) {
+                          _title = value!;
+                        },
                       ),
-                    ],
-                    borderRadius: BorderRadius.circular(15)),
-                padding: EdgeInsets.all(20),
-                child: Column(
-                  children: <Widget>[
-                    // Title input
-                    TextFormField(
-                      initialValue: _title,
-                      maxLength: 50,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue, width: 2),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey, width: 1),
-                        ),
-                        hintText: 'Title',
-                        counterText: '',
+                      const SizedBox(height: 16),
+
+                      // Category dropdown list
+                      DropdownButtonFormField<Category>(
+                        value: _selectedCategory,
+                        decoration: InputDecoration(
+                            hintText: 'Category Expense',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            )),
+                        icon: const Icon(Icons.keyboard_arrow_down),
+                        borderRadius: BorderRadius.circular(20),
+                        style: const TextStyle(color: Colors.black),
+                        items: [
+                          for (final category in Category.values)
+                            DropdownMenuItem<Category>(
+                              value: category,
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    category.icon,
+                                    color: category.color,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(category.label),
+                                ],
+                              ),
+                            ),
+                        ],
+                        onChanged: (Category? value) {
+                          setState(() {
+                            _selectedCategory = value!;
+                          });
+                        },
                       ),
-        
-                      // handle error validated
-                      validator: (value) => validatedTitle(value),
-                    ),
-                    const SizedBox(height: 16),
-        
-                    // Category dropdown list
-                    DropdownButtonFormField<Category>(
-                      value: _selectedCategory,
-                      decoration: InputDecoration(
-                          hintText: 'Category Expense',
+                      const SizedBox(height: 16),
+
+                      // Date Picker
+                      TextFormField(
+                        // initialValue: DateFormat.yMd().format(_selectedDate), // need to modify later
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          hintText: 'Pick Date',
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                          )),
-                      icon: const Icon(Icons.keyboard_arrow_down),
-                      borderRadius: BorderRadius.circular(20),
-                      style: const TextStyle(color: Colors.black),
-                      items: [
-                        for (final category in Category.values)
-                          DropdownMenuItem<Category>(
-                            value: category,
-                            child: Row(
-                              children: [
-                                Icon(
-                                  category.icon,
-                                  color: category.color,
+                          ),
+                          suffixIcon: Icon(
+                            Icons.calendar_today,
+                            color: Colors.black,
+                          ),
+                        ),
+                        onTap: pickDate,
+                        controller: _dateController,
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+
+                      // Optional Note
+                      TextFormField(
+                        initialValue: _note,
+                        maxLength: 120,
+                        maxLines: 3, // Set the height by increasing maxLines
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          hintText: 'Note',
+                        ),
+                        onChanged: (value) {
+                          _note = value; // Update _note when the text changes
+                        },
+
+                      ),
+                      const SizedBox(height: 16),
+
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          // Button Add Expense
+                          ElevatedButton(
+                            onPressed: saveItem,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.lightBlue,
+                            ),
+                            child: Text(
+                              buttonLabel,
+                              style: TextStyle(
+                                color: Colors.black87,
+                              ),
+                            ),
+                          ),
+
+                          // Divider Line
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Divider(
+                                  color: Colors.grey,
+                                  height: 28,
+                                  thickness: 0.5,
                                 ),
-                                const SizedBox(width: 8),
-                                Text(category.label),
-                              ],
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text('Or'),
+                              ),
+                              Expanded(
+                                child: Divider(
+                                  color: Colors.grey,
+                                  height: 28,
+                                  thickness: 0.5,
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          // Button Reset Expense
+                          ElevatedButton(
+                            onPressed: resetForm,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.lightBlue[100],
                             ),
-                          ),
-                      ],
-                      onChanged: (Category? value) {
-                        setState(() {
-                          _selectedCategory = value!;
-                        });
-                      },
-                    ),
-                    const SizedBox(height: 16),
-        
-                    // Date Picker
-                    TextFormField(
-                      // initialValue: DateFormat.yMd().format(_selectedDate), // need to modify later
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        hintText: 'Pick Date',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        suffixIcon: Icon(
-                          Icons.calendar_today,
-                          color: Colors.black,
-                        ),
-                      ),
-                      onTap: pickDate,
-                      controller: _dateController,
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-        
-                    // Optional Note
-                    TextFormField(
-                      initialValue: _note,
-                      maxLength: 120,
-                      maxLines: 3, // Set the height by increasing maxLines
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        hintText: 'Note',
-                      ),
-                      onChanged: (value) {
-                        _note = value; // Update _note when the text changes
-                      },
-                    ),
-                    const SizedBox(height: 16),
-        
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        // Button Add Expense
-                        ElevatedButton(
-                          onPressed: saveItem,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.lightBlue,
-                          ),
-                          child: Text(
-                            buttonLabel,
-                            style: TextStyle(
-                              color: Colors.black87,
-                            ),
-                          ),
-                        ),
-        
-                        // Divider Line
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Divider(
-                                color: Colors.grey,
-                                height: 28,
-                                thickness: 0.5,
+                            child: const Text(
+                              "Reset",
+                              style: TextStyle(
+                                color: Colors.black87,
                               ),
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Text('Or'),
-                            ),
-                            Expanded(
-                              child: Divider(
-                                color: Colors.grey,
-                                height: 28,
-                                thickness: 0.5,
-                              ),
-                            ),
-                          ],
-                        ),
-        
-                        // Button Reset Expense
-                        ElevatedButton(
-                          onPressed: resetForm,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.lightBlue[100],
                           ),
-                          child: const Text(
-                            "Reset",
-                            style: TextStyle(
-                              color: Colors.black87,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                )
-              ),
+                        ],
+                      ),
+                    ],
+                  )),
             ],
           ),
         ),

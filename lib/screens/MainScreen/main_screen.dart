@@ -49,7 +49,8 @@ class _MainScreenState extends State<MainScreen> {
     if (newExpense != null) {
       setState(() {
         expenses.add(newExpense); // Add the new expense to the list
-        
+        _screens[0] = ExpenseScreen(
+            expenses: expenses); // Update the ExpenseScreen with the new list
       });
     }
   }

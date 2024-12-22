@@ -1,6 +1,4 @@
 
-// import 'package:expense_app/screens/HomeExpenseScreen/expense_screen.dart';
-import 'package:expense_app/screens/HomeExpenseScreen/expense_screen.dart';
 import 'package:expense_app/screens/MainScreen/main_screen.dart';
 import 'package:flutter/material.dart';
 

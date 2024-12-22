@@ -21,10 +21,8 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
   @override
   void initState() {
     super.initState();
-    // Add the expenses passed from MainScreen to ExpenseList
-    for (var expense in widget.expenses) {
-      expenseList.addExpense(expense);
-    }
+    // Initialize the expense list with the passed expenses
+    expenseList.expenses = widget.expenses;
   }
 
   // Show details of an expense
@@ -43,20 +41,6 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
     );
   }
 
-  // // Function to add a new expense
-  // void addExpense() async {
-  //   Expense? newExpense = await Navigator.of(context).push<Expense>(
-  //     MaterialPageRoute(
-  //       builder: (ctx) => const ExpensesForm(mode: FormMode.creating),
-  //     ),
-  //   );
-  //   if (newExpense != null) {
-  //     setState(() {
-  //       expenseList.addExpense(newExpense); // Add the expense to ExpenseList
-  //     });
-  //   }
-  // }
-
 
   void editExpense(Expense expense) async {
     Expense? updatedExpense = await Navigator.of(context).push<Expense>(
@@ -73,6 +57,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
         expenseList.updateExpense(updatedExpense); // Update the expense
       });
     }
+    Navigator.of(context).pop(updatedExpense);
   }
 
 
