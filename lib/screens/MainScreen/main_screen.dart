@@ -15,7 +15,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
-  List<Expense> expenses = List.from(expensesData); // Copy the initial data
+  List<Expense> expenses = List.from(expensesData); // pass the initial data
 
   late List<Widget> _screens;
 
@@ -24,7 +24,8 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
     _screens = [
       ExpenseScreen(expenses: expenses), // Pass the current list of expenses
-      SummaryScreen(),
+      // SummaryScreen(),
+      SummaryScreen(expenses: expenses),
     ];
   }
 

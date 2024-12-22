@@ -1,4 +1,5 @@
 import 'package:expense_app/models/category.dart';
+import 'package:fl_chart/fl_chart.dart';
 // import 'package:uuid/uuid.dart';
 // const uuid = Uuid();
 
@@ -43,8 +44,13 @@ class ExpenseList {
     expenses.removeWhere((expense) => expense.id == id);
   }
 
+  void clear() {
+    expenses.clear();
+  }
+
   void updateExpense(Expense updatedExpense) {
-    int index = expenses.indexWhere((expense) => expense.id == updatedExpense.id);
+    int index =
+        expenses.indexWhere((expense) => expense.id == updatedExpense.id);
     if (index != -1) {
       expenses[index] = updatedExpense;
     }
@@ -66,7 +72,30 @@ class ExpenseList {
     return weeklyExpenses;
   }
 
-  void clear() {
-    expenses.clear();
+  List<PieChartExpenseData> calculatePieChartData() {
+    List<PieChartExpenseData> pieData = [];
+
+    // loop in all categories to get total amount of each
+    for (Category category in Category.values) {
+      double totalAmount = 0;
+      for (Expense expense in expenses) {
+        if (expense.category == category) {
+          totalAmount += expense.amount;
+        }
+      }
+
+      if (totalAmount > 0) {
+        pieData.add(PieChartExpenseData(category: category, totalAmount: totalAmount));
+      }
+    }
+
+    return pieData;
   }
+}
+
+class PieChartExpenseData {
+  final Category category;
+  final double totalAmount;
+
+  PieChartExpenseData({required this.category, required this.totalAmount});
 }

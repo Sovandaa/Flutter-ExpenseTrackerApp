@@ -85,6 +85,7 @@ class ExpenseItem extends StatelessWidget {
           child: SizedBox(
             height: 70,
             child: Card(
+              color: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
