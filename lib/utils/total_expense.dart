@@ -13,7 +13,7 @@ class TotalExpenseBanner extends StatelessWidget {
         height: 120,
         decoration: BoxDecoration(
           gradient: const LinearGradient(
-            colors: [Colors.blue, Colors.lightBlue, Colors.white70],
+            colors: [Color(0xFF2196F3), Color(0xFF64B5F6), Color(0xFFBBDEFB)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -43,23 +43,23 @@ class TotalExpenseBanner extends StatelessWidget {
                 const Text(
                   "Total Expense",
                   style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-                ],
+              ],
             ),
-              const SizedBox(height: 8),
-              Text(
-                "\$${totalExpense.toStringAsFixed(2)}",
-                style: const TextStyle(
+            const SizedBox(height: 8),
+            Text(
+              "\$${totalExpense.toStringAsFixed(2)}",
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
-                ),
               ),
-            ],
+            ),
+          ],
         ),
       ),
     );

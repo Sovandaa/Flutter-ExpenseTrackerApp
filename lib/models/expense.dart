@@ -60,18 +60,6 @@ class ExpenseList {
     return expenses.where((expense) => expense.category == category).toList();
   }
 
-  List<double> getWeeklyExpenses() {
-    List<double> weeklyExpenses = List<double>.filled(7, 0.0);
-
-    for (var expense in expenses) {
-      int dayOfWeek = expense.date.weekday -
-          1; // DateTime.weekday returns 1 for Monday, 7 for Sunday
-      weeklyExpenses[dayOfWeek] += expense.amount;
-    }
-
-    return weeklyExpenses;
-  }
-
   List<PieChartExpenseData> calculatePieChartData() {
     List<PieChartExpenseData> pieData = [];
 
@@ -85,13 +73,41 @@ class ExpenseList {
       }
 
       if (totalAmount > 0) {
-        pieData.add(PieChartExpenseData(category: category, totalAmount: totalAmount));
+        pieData.add(
+            PieChartExpenseData(category: category, totalAmount: totalAmount));
       }
     }
 
     return pieData;
   }
+
+  List<double> getDailyExpenses() {
+    // list store total expenses each day of week
+    List<double> dailyExpenses = List<double>.filled(7, 0.0);
+
+    for (var expense in expenses) {
+      int dayOfWeek = expense.date.weekday - 1; // 0-Monday, 6-Sunday
+      dailyExpenses[dayOfWeek] += expense.amount;
+    }
+
+    return dailyExpenses;
+  }
+
+  List<double> getMonthlyExpenses() {
+    // list store total expenses each month
+    List<double> monthlyExpenses = List<double>.filled(12, 0.0);
+
+    for (var expense in expenses) {
+      int month = expense.date.month - 1;
+      monthlyExpenses[month] += expense.amount;
+    }
+
+    return monthlyExpenses;
+  }
+
 }
+
+
 
 class PieChartExpenseData {
   final Category category;

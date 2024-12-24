@@ -99,6 +99,7 @@ class _ExpensesFormState extends State<ExpensesForm> {
     return null;
   }
 
+  // save item to list, passed data to home expense
   void saveItem() {
     bool valid = _formkey.currentState!.validate();
 
@@ -115,6 +116,7 @@ class _ExpensesFormState extends State<ExpensesForm> {
           note: _note,
         ),
       );
+      
     }
   }
 
@@ -250,7 +252,12 @@ class _ExpensesFormState extends State<ExpensesForm> {
                             hintText: 'Category Expense',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
-                            )),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.blue, width: 2),
+                            ),
+                        ),
                         icon: const Icon(Icons.keyboard_arrow_down),
                         borderRadius: BorderRadius.circular(20),
                         style: const TextStyle(color: Colors.black),
@@ -287,6 +294,10 @@ class _ExpensesFormState extends State<ExpensesForm> {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.blue, width: 2),
+                          ),
                           suffixIcon: Icon(
                             Icons.calendar_today,
                             color: Colors.black,
@@ -308,12 +319,15 @@ class _ExpensesFormState extends State<ExpensesForm> {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                           ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.blue, width: 2),
+                          ),
                           hintText: 'Note',
                         ),
                         onChanged: (value) {
                           _note = value; // Update _note when the text changes
                         },
-
                       ),
                       const SizedBox(height: 16),
 

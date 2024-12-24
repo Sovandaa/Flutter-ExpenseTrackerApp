@@ -53,16 +53,27 @@ class _MainScreenState extends State<MainScreen> {
         _screens[0] = ExpenseScreen(
             expenses: expenses); // Update the ExpenseScreen with the new list
       });
+      _currentIndex = 0; // Navigate back to the home expense screen
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(_titleBars[_currentIndex]),
+        title: Text(
+          _titleBars[_currentIndex],
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        shadowColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Colors.black87),
       ),
       backgroundColor: const Color(0xFFF2F2F8),
       body: _screens[_currentIndex],
@@ -75,18 +86,46 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  // Widget _buildFloatingActionButton() {
+  //   return FloatingActionButton(
+  //     onPressed: _addExpense,
+  //     backgroundColor: Colors.lightBlueAccent,
+  //     elevation: 8.0,
+  //     shape: CircleBorder(),
+  //     child: const Icon(
+  //       Icons.add_rounded,
+  //       size: 28.0,
+  //       color: Colors.white,
+  //     ),
+  //   );
+  // }
+
   Widget _buildFloatingActionButton() {
-    return FloatingActionButton(
-      onPressed: _addExpense,
-      backgroundColor: Colors.lightBlueAccent,
-      elevation: 8.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
+    return Container(
+      height: 56.0,
+      width: 56.0,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.lightBlueAccent,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            spreadRadius: 1,
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
       ),
-      child: const Icon(
-        Icons.add_rounded,
-        size: 28.0,
-        color: Colors.white,
+      child: FloatingActionButton(
+        onPressed: _addExpense,
+        backgroundColor: Colors.lightBlueAccent,
+        elevation: 2,
+        shape: CircleBorder(),
+        child: const Icon(
+          Icons.add_rounded,
+          size: 24.0,
+          color: Colors.white,
+        ),
       ),
     );
   }

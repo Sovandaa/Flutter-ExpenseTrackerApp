@@ -12,38 +12,104 @@ class ExpensePieChart extends StatelessWidget {
     final expenseList = ExpenseList();
     expenseList.expenses = expenses;
     final pieChartExpense = expenseList.calculatePieChartData();
+    final totalExpense = expenseList.calculateTotal();
 
-    return Container(
-        height: 200,
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              spreadRadius: 1,
-              blurRadius: 10,
-              offset: const Offset(3, 3),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Pie Chart Section
+          Expanded(
+            flex: 2,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                PieChart(
+                  swapAnimationDuration: const Duration(milliseconds: 700),
+                  swapAnimationCurve: Curves.easeInOutQuint,
+                  PieChartData(
+                    sectionsSpace: 2,
+                    centerSpaceRadius: 60,
+                    sections: pieChartExpense.map((data) {
+                      return PieChartSectionData(
+                        color: data.category.color,
+                        value: data.totalAmount,
+                        title: '',
+                      );
+                    }).toList(),
+                  ),
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      "Total Expense",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    Text(
+                      '\$${totalExpense.toStringAsFixed(2)}',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          ],
-        ),
-
-        child: PieChart(
-          swapAnimationCurve: Curves.easeInOutQuint,
-          // curve: Curves.easeInOutQuint,
-          // duration: Duration(milliseconds: 750),
-          PieChartData(
-            sections: pieChartExpense.map((data) {
-              return PieChartSectionData(
-                color: data.category.color,
-                value: data.totalAmount,
-                title:
-                    '${data.category.label}\n\$${data.totalAmount.toStringAsFixed(1)}',
-              );
-            }).toList(),
           ),
-        )
-      );
+          const SizedBox(width: 10),
+          // Category Legend Section
+          Expanded(
+            flex: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: pieChartExpense.map((data) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 14,
+                        height: 14,
+                        decoration: BoxDecoration(
+                          color: data.category.color,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        data.category.label,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        '\$${data.totalAmount.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -41,7 +41,6 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
     );
   }
 
-
   void editExpense(Expense expense) async {
     Expense? updatedExpense = await Navigator.of(context).push<Expense>(
       MaterialPageRoute(
@@ -71,7 +70,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
     });
   }
 
-  // Get filtered expenses by category
+  // filtered expenses by category
   List<Expense> get filteredExpenses {
     if (_selectedCategory == null) {
       return expenseList.getAllExpense();
@@ -122,7 +121,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                             value: null,
                             child: Row(
                               children: const [
-                                Icon(Icons.all_inclusive_rounded),
+                                // Icon(Icons.all_inclusive_rounded),
                                 SizedBox(width: 10),
                                 Text("All Categories"),
                               ],

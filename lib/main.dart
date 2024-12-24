@@ -16,3 +16,4 @@ class ExpenseTrackerApp extends StatelessWidget {
     );
   }
 }
+
