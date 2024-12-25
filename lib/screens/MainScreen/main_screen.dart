@@ -1,6 +1,6 @@
 import 'package:expense_app/data/expense_data.dart';
 import 'package:expense_app/models/expense.dart';
-import 'package:expense_app/screens/ExpenseForm/expenses_form.dart';
+import 'package:expense_app/screens/ExpenseFormScreen/expenses_form.dart';
 import 'package:expense_app/screens/HomeExpenseScreen/expense_screen.dart';
 import 'package:expense_app/screens/SummaryScreen/summary_screen.dart';
 import 'package:expense_app/utils/bottom_nav.dart';
@@ -30,7 +30,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   final List<String> _titleBars = [
-    "Expense Manager",
+    "Expense Home",
     "Expense Summary",
   ];
 

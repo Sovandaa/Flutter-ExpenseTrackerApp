@@ -62,6 +62,8 @@ class ExpenseBarChart extends StatelessWidget {
           ),
           borderData: FlBorderData(show: false),
           gridData: FlGridData(show: false),
+
+          // show bar chart data, each day expense
           barGroups: List.generate(7, (index) {
             double expense =
                 dailyExpenses.length > index ? dailyExpenses[index] : 0.0;
@@ -77,6 +79,8 @@ class ExpenseBarChart extends StatelessWidget {
               ],
             );
           }).toList(),
+
+          // touch data to show total daily expense 
           barTouchData: BarTouchData(
             touchTooltipData: BarTouchTooltipData(
               tooltipPadding: const EdgeInsets.all(6),

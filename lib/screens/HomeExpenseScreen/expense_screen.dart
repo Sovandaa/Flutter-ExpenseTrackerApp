@@ -1,6 +1,6 @@
 import 'package:expense_app/models/category.dart';
 import 'package:expense_app/models/expense.dart';
-import 'package:expense_app/screens/ExpenseForm/expenses_form.dart';
+import 'package:expense_app/screens/ExpenseFormScreen/expenses_form.dart';
 import 'package:expense_app/screens/HomeExpenseScreen/expense_detail.dart';
 import 'package:expense_app/screens/HomeExpenseScreen/expenses_list.dart';
 import 'package:expense_app/utils/total_expense.dart';
@@ -21,7 +21,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
   @override
   void initState() {
     super.initState();
-    // Initialize the expense list with the passed expenses from main screen
+    // Initialize the expense list with the passed expenses
     expenseList.expenses = widget.expenses;
   }
 
@@ -55,7 +55,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
       setState(() {
         expenseList.updateExpense(updatedExpense); // Update the expense
       });
-      // show msg update expense success
+      // show msg update success
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text("Expense updated successfully!"),
@@ -107,7 +107,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                 ),
               ),
 
-              // Category filter dropdown, all category, each category
+              // Category filter dropdown with modern design
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
