@@ -116,14 +116,18 @@ class _ExpensesFormState extends State<ExpensesForm> {
           note: _note,
         ),
       );
+
       // show msg add expense success
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Expense Added successfully!"),
-          backgroundColor: Colors.blue,
-        ),
-      );
-      
+      if (creatingMode) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Expense Added successfully!"),
+            backgroundColor: Colors.blue,
+            duration: Duration(milliseconds: 850),
+          ),
+        );
+      }
+
     }
   }
 

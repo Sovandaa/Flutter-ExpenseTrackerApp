@@ -60,6 +60,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
         SnackBar(
           content: Text("Expense updated successfully!"),
           backgroundColor: Colors.blue,
+          duration: Duration(milliseconds: 850),
         ),
       );
     }
