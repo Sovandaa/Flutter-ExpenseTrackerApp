@@ -1,5 +1,5 @@
 import 'package:expense_app/models/category.dart';
-import 'package:fl_chart/fl_chart.dart';
+// import 'package:fl_chart/fl_chart.dart';
 // import 'package:uuid/uuid.dart';
 // const uuid = Uuid();
 
@@ -81,6 +81,40 @@ class ExpenseList {
     return pieData;
   }
 
+  PieChartExpenseData? getHighestExpenseCategory() {
+    List<PieChartExpenseData> pieData = calculatePieChartData();
+
+    if (pieData.isEmpty) {
+      return null;
+    }
+
+    PieChartExpenseData? highest =
+        pieData[0]; // Assume the first index is the highest
+
+    for (PieChartExpenseData data in pieData) {
+      if (data.totalAmount > highest!.totalAmount) {
+        highest = data;
+      }
+    }
+
+    return highest;
+  }
+
+  PieChartExpenseData? getLowestExpenseCategory() {
+    List<PieChartExpenseData> pieData = calculatePieChartData();
+    if (pieData.isEmpty) {
+      return null;
+    }
+    PieChartExpenseData? lowest =
+        pieData[0]; // Assume the first index is the lowest
+    for (PieChartExpenseData data in pieData) {
+      if (data.totalAmount < lowest!.totalAmount) {
+        lowest = data;
+      }
+    }
+    return lowest;
+  }
+
   List<double> getDailyExpenses() {
     // list store total expenses each day of week
     List<double> dailyExpenses = List<double>.filled(7, 0.0);
@@ -93,21 +127,27 @@ class ExpenseList {
     return dailyExpenses;
   }
 
-  List<double> getMonthlyExpenses() {
-    // list store total expenses each month
-    List<double> monthlyExpenses = List<double>.filled(12, 0.0);
-
-    for (var expense in expenses) {
-      int month = expense.date.month - 1;
-      monthlyExpenses[month] += expense.amount;
+  double getAverageDailyExpense() {
+    List<double> dailyExpense = getDailyExpenses();
+    if (dailyExpense.isEmpty) {
+      return 0;
+    } else {
+      return dailyExpense.reduce((a, b) => a + b) / dailyExpense.length;
     }
-
-    return monthlyExpenses;
   }
 
+  // List<double> getMonthlyExpenses() {
+  //   // list store total expenses each month
+  //   List<double> monthlyExpenses = List<double>.filled(12, 0.0);
+
+  //   for (var expense in expenses) {
+  //     int month = expense.date.month - 1;
+  //     monthlyExpenses[month] += expense.amount;
+  //   }
+
+  //   return monthlyExpenses;
+  // }
 }
-
-
 
 class PieChartExpenseData {
   final Category category;

@@ -30,7 +30,7 @@ class ExpensePieChart extends StatelessWidget {
                   swapAnimationCurve: Curves.easeInOutQuint,
                   PieChartData(
                     sectionsSpace: 2,
-                    centerSpaceRadius: 60,
+                    centerSpaceRadius: 50,
                     sections: pieChartExpense.map((data) {
                       return PieChartSectionData(
                         color: data.category.color,
@@ -43,14 +43,14 @@ class ExpensePieChart extends StatelessWidget {
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text(
-                      "Total Expense",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey,
-                      ),
-                    ),
+                    // const Text(
+                    //   "Total",
+                    //   style: TextStyle(
+                    //     fontSize: 14,
+                    //     fontWeight: FontWeight.w600,
+                    //     color: Colors.grey,
+                    //   ),
+                    // ),
                     Text(
                       '\$${totalExpense.toStringAsFixed(2)}',
                       style: const TextStyle(
@@ -113,3 +113,4 @@ class ExpensePieChart extends StatelessWidget {
     );
   }
 }
+

@@ -31,7 +31,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<String> _titleBars = [
     "Expense Manager",
-    "Summary",
+    "Expense Summary",
   ];
 
   void onItemTapped(int index) {

@@ -157,7 +157,13 @@ class _ExpensesFormState extends State<ExpensesForm> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(headerLabel),
+        title: Text(headerLabel, 
+        style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black87,
+          ),
+        ),
       ),
       backgroundColor: const Color(0xFFF2F2F8),
       body: Container(
