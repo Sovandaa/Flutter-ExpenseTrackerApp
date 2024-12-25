@@ -6,10 +6,10 @@ import 'package:expense_app/models/expense.dart';
 final List<Expense> expensesData = [
   Expense(
     id: 'E001',
-    title: "Going out", 
+    title: "Book", 
     amount: 12, 
     date: DateTime.now(), 
-    category: Category.entertainment
+    category: Category.education
   ),
   Expense(
     id: 'E002',
@@ -31,6 +31,13 @@ final List<Expense> expensesData = [
     amount: 12, 
     date: DateTime.now(), 
     category: Category.others
+  ),
+  Expense(
+      id: 'E005',
+    title: "Movie", 
+    amount: 3, 
+    date: DateTime.now(), 
+    category: Category.entertainment
   ),
   
   

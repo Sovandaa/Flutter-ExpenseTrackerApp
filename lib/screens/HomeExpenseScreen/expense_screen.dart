@@ -55,10 +55,16 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
       setState(() {
         expenseList.updateExpense(updatedExpense); // Update the expense
       });
+      // show msg update success
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Expense updated successfully!"),
+          backgroundColor: Colors.blue,
+        ),
+      );
     }
     Navigator.of(context).pop(updatedExpense);
   }
-
 
   // Calculate total expense
   double get totalExpense => expenseList.calculateTotal();
