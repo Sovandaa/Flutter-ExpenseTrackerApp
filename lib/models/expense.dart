@@ -139,14 +139,13 @@ class ExpenseList {
   // List<double> getMonthlyExpenses() {
   //   // list store total expenses each month
   //   List<double> monthlyExpenses = List<double>.filled(12, 0.0);
-
   //   for (var expense in expenses) {
   //     int month = expense.date.month - 1;
   //     monthlyExpenses[month] += expense.amount;
   //   }
-
   //   return monthlyExpenses;
   // }
+
 }
 
 class PieChartExpenseData {
