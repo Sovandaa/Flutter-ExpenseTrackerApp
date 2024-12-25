@@ -29,7 +29,7 @@ class ExpensePieChart extends StatelessWidget {
                   swapAnimationDuration: const Duration(milliseconds: 700),
                   swapAnimationCurve: Curves.easeInOutQuint,
                   PieChartData(
-                    sectionsSpace: 2,
+                    sectionsSpace: 0,
                     centerSpaceRadius: 50,
                     sections: pieChartExpense.map((data) {
                       return PieChartSectionData(
