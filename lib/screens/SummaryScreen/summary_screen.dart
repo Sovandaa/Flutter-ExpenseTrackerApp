@@ -171,6 +171,7 @@ class SummaryScreen extends StatelessWidget {
     );
   }
 
+  // show title of section chart 
   Widget _buildSectionTitle(String title) {
     return Row(
       children: [
@@ -192,6 +193,7 @@ class SummaryScreen extends StatelessWidget {
     );
   }
 
+  // customs card for high, lower, average expense
   Widget _buildMetricCard({
     required IconData icon,
     required Color iconColor,

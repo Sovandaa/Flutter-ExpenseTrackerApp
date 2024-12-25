@@ -21,7 +21,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
   @override
   void initState() {
     super.initState();
-    // Initialize the expense list with the passed expenses
+    // Initialize the expense list with the passed expenses from main screen
     expenseList.expenses = widget.expenses;
   }
 
@@ -55,7 +55,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
       setState(() {
         expenseList.updateExpense(updatedExpense); // Update the expense
       });
-      // show msg update success
+      // show msg update expense success
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text("Expense updated successfully!"),
@@ -107,7 +107,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
                 ),
               ),
 
-              // Category filter dropdown with modern design
+              // Category filter dropdown, all category, each category
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
